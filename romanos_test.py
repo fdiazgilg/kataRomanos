@@ -1,5 +1,5 @@
 import unittest
-from romanos import romano_a_arabigo
+from romanos import romano_a_arabigo, arabigo_a_romano
 
 class RomanNumberTest(unittest.TestCase):
 
@@ -39,9 +39,36 @@ class RomanNumberTest(unittest.TestCase):
     def test_restas_no_admiten_mas_de_un_orden_de_diferencia(self):
         self.assertEqual(romano_a_arabigo('IL'), 0)
         self.assertEqual(romano_a_arabigo('IC'), 0)
+  
+    def test_numeros_mayores_de_3999(self):
+        self.assertEqual(romano_a_arabigo('(IV)'), 4000)
+        self.assertEqual(romano_a_arabigo('(III)I'), 3001)
+        self.assertEqual(romano_a_arabigo('((IV))'), 4000000)
+        self.assertEqual(romano_a_arabigo('(VII)CMXXIII'), 7923)
+        self.assertEqual(romano_a_arabigo('((VII))(DLIII)DCXXXVII'), 7553637)
 
 
+class ArabicNumberTest(unittest.TestCase):
+    def test_unidades(self):
+        self.assertEqual(arabigo_a_romano(1), 'I')
+        self.assertEqual(arabigo_a_romano(2), 'II')
+        self.assertEqual(arabigo_a_romano(3), 'III')
+        self.assertEqual(arabigo_a_romano(4), 'IV')
+        self.assertEqual(arabigo_a_romano(5), 'V')
+        self.assertEqual(arabigo_a_romano(6), 'VI')
+        self.assertEqual(arabigo_a_romano(7), 'VII')
+        self.assertEqual(arabigo_a_romano(8), 'VIII')
+        self.assertEqual(arabigo_a_romano(9), 'IX')
 
+    def test_arabic_a_roman(self):
+        self.assertEqual(arabigo_a_romano(2123), 'MMCXXIII')
+        self.assertEqual(arabigo_a_romano(2444), 'MMCDXLIV')
+        self.assertEqual(arabigo_a_romano(3555), 'MMMDLV')
+        self.assertEqual(arabigo_a_romano(1678), 'MDCLXXVIII')
+        self.assertEqual(arabigo_a_romano(2999), 'MMCMXCIX')
+        self.assertEqual(arabigo_a_romano(3999), 'MMMCMXCIX')
+        self.assertEqual(arabigo_a_romano(4000), 0)
+        self.assertEqual(arabigo_a_romano(-1), 0)
 
 
 if __name__ == '__main__':
