@@ -12,20 +12,19 @@ def romano_a_arabigo(numRomano):
     romanSep = numRomano.split(')')
     numArabigoTotal = 0
 
+    #Nuevo bucle para transformar en romano cada elemento de romanSep
     for romano in romanSep:
-        #Variable factor para conocer por que numero multiplicamos
+        #Variables factor y countParent para conocer por que numero multiplicamos
         countParent = 0
+        factor = 1
         numArabigo = 0
         ultimoCaracter = ''
-        factor = 1
         numRepes = 1
 
         for letra in romano:
             if letra == '(':
                 countParent += 1
                 factor = pow(10,3*countParent)
-            elif letra == ')':
-                pass
             elif letra in valores:
                 numArabigo += valores[letra]
                 if ultimoCaracter == '':
@@ -34,14 +33,10 @@ def romano_a_arabigo(numRomano):
                     numRepes = 1
                 elif valores[letra] == valores[ultimoCaracter]:
                     numRepes += 1
-                    if letra in valores5:
-                        return 0
-                    if numRepes > 3:
+                    if letra in valores5 or numRepes > 3:
                         return 0
                 elif valores[letra] > valores[ultimoCaracter]:
-                    if numRepes > 1:
-                        return 0
-                    if ultimoCaracter in valores5:
+                    if ultimoCaracter in valores5 or numRepes > 1:
                         return 0
                     distancia = simbolosOrdenados.index(letra) - simbolosOrdenados.index(ultimoCaracter)
                     if distancia > 2:
@@ -58,8 +53,7 @@ def romano_a_arabigo(numRomano):
             else:
                 ultimoCaracter = letra
             
-        numArabigo = numArabigo * factor
-        numArabigoTotal += numArabigo
+        numArabigoTotal += numArabigo * factor
 
     return numArabigoTotal
 

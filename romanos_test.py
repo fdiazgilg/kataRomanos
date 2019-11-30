@@ -45,7 +45,7 @@ class RomanNumberTest(unittest.TestCase):
         self.assertEqual(romano_a_arabigo('(III)I'), 3001)
         self.assertEqual(romano_a_arabigo('((IV))'), 4000000)
         self.assertEqual(romano_a_arabigo('(VII)CMXXIII'), 7923)
-        self.assertEqual(romano_a_arabigo('((VII))(DLIII)DCXXXVII'), 7553637)
+        self.assertEqual(romano_a_arabigo('(((VII)))(DLIII)DCXXXVII'), 7000553637)
 
 
 class ArabicNumberTest(unittest.TestCase):
