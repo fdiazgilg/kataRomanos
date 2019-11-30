@@ -52,7 +52,6 @@ def romano_a_arabigo(numRomano):
                 ultimoCaracter = ''
             else:
                 ultimoCaracter = letra
-            
         numArabigoTotal += numArabigo * factor
 
     return numArabigoTotal
