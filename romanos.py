@@ -1,4 +1,3 @@
-
 valores = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
 valores5 = {'V':5, 'L':50, 'D':500}
 simbolosOrdenados = ['I', 'V', 'X', 'L', 'C', 'D', 'M']
@@ -69,9 +68,9 @@ def arabigo_a_romano(valor):
     else:
         #Separamos el arabigo en millares, centenas, decenas y unidades
         millares = valor // 1000
-        centenas = (valor - (millares * 1000)) // 100
-        decenas  = (valor - (millares * 1000) - (centenas * 100)) // 10
-        unidades = valor - (millares * 1000) - (centenas * 100) - (decenas * 10)
+        centenas = (valor % 1000) // 100
+        decenas  = ((valor % 1000) % 100 ) // 10
+        unidades = ((valor % 1000) % 100) % 10
         #Almacenamos cada elemento en la variable valorSep
         valorSep.append(millares)
         valorSep.append(centenas)
@@ -79,7 +78,7 @@ def arabigo_a_romano(valor):
         valorSep.append(unidades)
 
     #Recorremos la lista para su transformacion en romanos
-    for i in range(-len(valorSep),0):
+    for i in range(-len(valorSep), 0):
         if valorSep[i] <= 3:
             listNumRomano.append(valorSep[i] * romanTipo1[i])
         elif valorSep[i] == 4:
@@ -89,7 +88,7 @@ def arabigo_a_romano(valor):
         else:
             listNumRomano.append(romanTipo1[i]+romanTipo1[i-1])
     
-    #Recorremos la lista generada en el paso anterior y agrupamos para obtener el resultado final
+    #Recorremos la lista generada en el paso anterior y sumamos para obtener el resultado final
     for j in range(len(listNumRomano)):
         numRomano += listNumRomano[j]
     
