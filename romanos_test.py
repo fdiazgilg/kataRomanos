@@ -64,6 +64,7 @@ class ArabicNumberTest(unittest.TestCase):
         self.assertEqual(arabigo_a_romano(2123), 'MMCXXIII')
         self.assertEqual(arabigo_a_romano(2444), 'MMCDXLIV')
         self.assertEqual(arabigo_a_romano(3555), 'MMMDLV')
+        self.assertEqual(arabigo_a_romano(3000), 'MMM')
         self.assertEqual(arabigo_a_romano(1678), 'MDCLXXVIII')
         self.assertEqual(arabigo_a_romano(2999), 'MMCMXCIX')
         self.assertEqual(arabigo_a_romano(3999), 'MMMCMXCIX')
