@@ -47,7 +47,7 @@ def romano_a_arabigo(numRomano):
             else:
                 return 0
 
-            if letra == '(' or letra == ')':
+            if letra == '(':
                 ultimoCaracter = ''
             else:
                 ultimoCaracter = letra
