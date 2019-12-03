@@ -1,5 +1,5 @@
 import unittest
-from romanos import romano_a_arabigo, arabigo_a_romano
+from romanos import romano_a_arabigo, arabigo_a_romano, contarParentesis
 
 class RomanNumberTest(unittest.TestCase):
 
@@ -42,10 +42,18 @@ class RomanNumberTest(unittest.TestCase):
   
     def test_numeros_mayores_de_3999(self):
         self.assertEqual(romano_a_arabigo('(IV)'), 4000)
-        self.assertEqual(romano_a_arabigo('(III)I'), 3001)
+        self.assertEqual(romano_a_arabigo('(MMM)I'), 3000001)
         self.assertEqual(romano_a_arabigo('((IV))'), 4000000)
         self.assertEqual(romano_a_arabigo('(VII)CMXXIII'), 7923)
         self.assertEqual(romano_a_arabigo('(((VII)))(DLIII)DCXXXVII'), 7000553637)
+
+    def test_procesar_parentesis(self):
+        self.assertEqual(contarParentesis('(IV)'), [[1, 'IV']])
+        self.assertEqual(contarParentesis('((VII))(XL)CCCXXII'), [[2, 'VII'], [1, 'XL'], [0, 'CCCXXII']])
+        self.assertEqual(contarParentesis('(((VII)))(DLIII)DCXXXVII'), [[3, 'VII'], [1, 'DLIII'], [0, 'DCXXXVII']])
+        self.assertEqual(contarParentesis('(VI)((VII))'), 0)
+        self.assertEqual(contarParentesis('(VI)((VII)'), 0)
+        self.assertEqual(contarParentesis('VI)VII)'), 0)
 
 
 class ArabicNumberTest(unittest.TestCase):
